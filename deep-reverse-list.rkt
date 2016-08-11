@@ -1,0 +1,15 @@
+(define (append-list l1 l2)
+  (if (null? l1)
+      l2
+      (cons (car l1)(append-list (cdr l1) l2))))
+(define (deep-reverse-list l)
+  (if (null? l)
+      '()
+      (append-list (deep-reverse-list (cdr l))
+                   (if (list? (car l))
+                       (list (deep-reverse-list (car l)))
+                       (list (car l))))))
+
+(display "========== TEST ==========\n")
+(deep-reverse-list '(a (b c d) e f))
+(deep-reverse-list '(a b c d e f))
